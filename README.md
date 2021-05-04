@@ -24,6 +24,7 @@ As a software developer we can run an application in isolation inside a virtual 
 * Each VM needs a full-blown OS (full copy of OS that needs a license key) that's why these VMs are 
 * Slow to start because the entire os has to be loaded just like restarting your computer.
 * Resource Intensive - because each virtual machine takes slice of actual physical hardware resources like `CPU, Memory and Disk Space`
+
 ![Virtual Maching](https://user-images.githubusercontent.com/50256921/116961943-9d334700-acdf-11eb-9d4e-974bd9a8f511.png)
 
 
@@ -34,4 +35,11 @@ As a software developer we can run an application in isolation inside a virtual 
 * Infact all containers on a single machine shared a operating system of the host (Use OS of the host) so that means we need to license, patch and monitor a single operating system. Also because the operating system already started on the host
 * A Container can start-up prety quickly usally in a second sometimes less and also the container don't need slice of hardware resources on the host.
 * Need less hardware resources. It means we don't need to give specific numbers of CPU cores slice of memory or Disk Space. So in a single host we can run 10s or even can run 100s of containers side by side.
+
+# Docker Architecture
+Docker uses a client sever architecture so it has a client component talks to a server component using a `REST API`. The server also called docker engine set on the background and takes care of building and running docker container.
+
+![Docker Architecture](https://user-images.githubusercontent.com/50256921/116962609-665e3080-ace1-11eb-9663-2ff25596bf42.png)
+
+
 
