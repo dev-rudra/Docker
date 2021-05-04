@@ -249,4 +249,4 @@ Chaining commands in Linux allows us to execute multiple commands at the same ti
 In Linux and Unix based systems environment variables are a set of dynamic named values, stored within the system that are used by applications launched in shells or subshells.
 * `printenv` to view all the environment configuration
 * `printenv PATH` it will print `/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin` or prifix by $ sign `echo $PATH` will return same result
-* 
+* `ls -a` it will return hidden files and directory
