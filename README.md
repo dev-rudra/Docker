@@ -52,4 +52,19 @@ When using a Docker to start-up we have to take an application and it does not m
 ![Development Workflow](https://user-images.githubusercontent.com/50256921/116964470-922fe500-ace6-11eb-943f-1bafdbef510a.png)
 
 
-##  
+##  Image
+* A cut-down OS
+* A runtime environment (Eg: Node, Python)
+* It also include Application files 
+* Third-party libraries
+* Environment variables
+So we create a docker file and give it to Docker for packaging our application into an image.
+- Once we have a image we tell docker to start container using that image. So the container is a process but it's a special process because it has it's own file system which is provided by the image. So our application gets loaded inside the container or a process and this is how we run our application on locally on our development machines. So instead of runing directly lunching the application and runing it into typical process we tell docker to run inside a container in an isolated environment.
+
+## Beauty of a Docker.
+Once we have a image can push it into registry (docker-hup is like github for git it's a storage for a docker images that anyone can use) so once images in docker-hub then we can pull it on any machine that run docker this machine has same image that we have on Development machine which contains specific version of our application with everything it needs. So we can start a application the same way started on a Development machine. So with docker we no longer need to maintain long complex release documents have to be precisily followed. All the instruction for building image of an application are written in docker-file with that we can package our application into an image and run it virtually anywhere.
+
+![Beauty-of-Docker](https://user-images.githubusercontent.com/50256921/116966478-3d429d80-aceb-11eb-9a7b-a4c7756874b2.png)
+
+
+
