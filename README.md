@@ -209,3 +209,44 @@ For example, /srv/cvs contains CVS related data.
 * to delete multiple file or single file `rm file_name` or `rm file1 file2` or delete all file start with file `rm file*`
 * to delete folder `rm -r folder_name` -r is short for reccursive 
 * to rename file or directory `mv old_name new_name`
+
+### Editing and Viewing Files
+* `cat` to show the content of the small file
+* `more` to view large content of file use space or enter key to navigate to another line
+* `less` to view large content of file with up and down arrow key (`apt install less`)
+* `head` to view the first line of the file and we can pass the flag `head -n 5 /etc/adduser.conf`
+* `tail` to view the last line of the file `tail -n 5 /etc/adduser.conf`
+
+### Redirection
+* `>` redirection operator
+* `cat` is the short for the concatination. 
+* to write the content of one file to another file `cat text1.txt > text2.txt`.
+* to view the content of the both file `cat text1.txt text2.txt`.
+* to write the content using echo `echo Hello Docker > hello.txt` it will create a text file and write a conent Hello Docker into it.
+* We can combine many files to one file example `text1.txt text2.txt > combined.txt`.
+
+### Searching for text
+Regular Expression is a case sensitive.
+* `grep` which is short for global regular expression for example `grep Hello text1.txt` it will search Hello word in text1.txt file.
+* To search the text in case insensitive `grep -i hello text1.txt`
+* to search the text in current directory `grep -i -r hello .` or `grep -ir hello .`
+
+### Finding file and Directoris
+`find` this command will show all the files and directories in the current directry.
+* to find the directory only `find -type d`
+* to find the files only `find -type f` or `find -type f --name "f*"` this means file start with name f.
+
+### Chaining Commands
+Chaining commands in Linux allows us to execute multiple commands at the same time and directly through the terminal. It's like short shell scripts that can be executed through the terminal directly. ... It allows us to run multiple commands in succession or simultaneously.
+
+* for example: `mkdir test; cd test; echo done` this will execute other command if one command is fail.
+* `mkdir test && cd test && echo done` this will not execute if one command is failed.
+* `mkdir test || echo "Directory Exists"` if the first command is filed will execute second command if not second command will not execute.
+* `ls /bin | head/tail/less`
+* to write the command in a single line `mkdir test;\ > cd test;\ > echo done` 
+
+### Environment Variable
+In Linux and Unix based systems environment variables are a set of dynamic named values, stored within the system that are used by applications launched in shells or subshells.
+* `printenv` to view all the environment configuration
+* `printenv PATH` it will print `/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin` or prifix by $ sign `echo $PATH` will return same result
+* 
