@@ -41,5 +41,15 @@ Docker uses a client sever architecture so it has a client component talks to a 
 
 ![Docker Architecture](https://user-images.githubusercontent.com/50256921/116962609-665e3080-ace1-11eb-9663-2ff25596bf42.png)
 
+Technically a container is just a process like other processes runing on the computer. More accuratly the containers shared the Kernel of the host. Kernel is the core of the operating system it's like the engine of the car. A Kernel manages applications and hardware resources.
+
+# Installing Docker
+* if already installed Docker and recommned to upgrade to latest version `docker version` 
+
+# Development Workflow
+When using a Docker to start-up we have to take an application and it does not matter what kind of application it is or how it builds we take an application and dockerized it which means we make small change so that it can be run by docker. How? we just add a docker file to that application. A docker file is a plain text file that includes instructions that docker usages to package the appliation into an image. The image contains everything our application needs to run.
+
+![Development Workflow](https://user-images.githubusercontent.com/50256921/116964470-922fe500-ace6-11eb-943f-1bafdbef510a.png)
 
 
+##  
