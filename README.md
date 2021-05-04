@@ -66,5 +66,23 @@ Once we have a image can push it into registry (docker-hup is like github for gi
 
 ![Beauty-of-Docker](https://user-images.githubusercontent.com/50256921/116966478-3d429d80-aceb-11eb-9a7b-a4c7756874b2.png)
 
+## Docker in Action
+1. `Create a folder called 'hello-docker' in any desktop`
+2. `Create a file called app.js and write code console.log("Hello Docker!");`
+3. `and run using node app.js`
 
+### Instructions
+1. Start with an OS
+2. Install Node
+3. Copy app files
+4. Run node app.js
 
+The above program and instruction is quite simple but what if the really complex program and needs to follow-up the documents. That's why here is a docker to rescue  this problem. 
+```Dockerfile
+FROM node:alpine
+COPY . /app
+WORKDIR /app
+CMD node app.js
+```
+and we have to package our application to image
+`docker build -t hello-docker .` here -t flags means 'tags' which helps to identify the image name which is called 'hello-docker' and . means save location.
