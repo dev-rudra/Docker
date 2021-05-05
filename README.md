@@ -278,13 +278,23 @@ Process is an instance of a running programm. To view all the running instances 
 #### Managing Groups 
 **a. Why we need groups?**
 We need group because to set the same privileges to the same group users.
+
 **b. How to see the group info?**
 The user groups information will sotred in `/etc/group`
+
 **c. How to add the user to the group?**
 There are two options -G --groups or -g --gid. Difference between --gid is for force as a primary group and --groups is as supplementary group. In Linux system for user there is one primary group and zero or more supplementary groups.
 To add the user to the group `usermod -G developers magar`
-**To serach the user `grep magar /etc/passwd` or `cat /etc/passwd | grep magar` ** It returns `magar:x:1000:1000::/home/magar:/bin/bash` **
+**To serach the user `grep magar /etc/passwd` or `cat /etc/passwd | grep magar` It returns `magar:x:1000:1000::/home/magar:/bin/bash`**
+To see the group of user `groups magar`
 
+To see the 
 1. `groupadd`
 2. `groupmod`
 3. `groupdel`
+
+#### File Permission 
+```Linux
+-rw-r--r-- 1 root  root    11 May  5 03:58 deploy.sh
+drwxr-xr-x 2 magar magar 4096 May  5 03:20 magar
+```
