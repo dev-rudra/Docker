@@ -298,3 +298,9 @@ To see the
 -rw-r--r-- 1 root  root    11 May  5 03:58 deploy.sh
 drwxr-xr-x 2 magar magar 4096 May  5 03:20 magar
 ```
+* If we see the `-` it means file and start with `d` it means directory/folder.
+* And other remaining 9 letters devided into 3 groups with 3 letters. for example `rw-r--r--`. In each group we have 'read' 'write' and 'execute' permission.
+* What is the role of each group permission? First groups represents for the users who owns the file. Second group represents the permission for the groups that owns the file. Third group represents the premission for everyone-else. 
+* to change the permission we have three options `u` for users `g` for groups and `o` for others. so to add execute permission  `chmod u+x deploy.sh` and remove execute permission `chmod u-x deploy.sh`
+# Building Images
+
