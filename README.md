@@ -250,3 +250,41 @@ In Linux and Unix based systems environment variables are a set of dynamic named
 * `printenv` to view all the environment configuration
 * `printenv PATH` it will print `/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin` or prifix by $ sign `echo $PATH` will return same result
 * `ls -a` it will return hidden files and directory
+
+NOTE: To set the value for temporary purpose for any variable `export DB_USER="Rudra"` and `echo $DB_USER`
+NOTE: To set the value for permanent purpose for any variable `echo COLOR=Blue >> .bashrc`
+if we could not see the value from home directory run these command `source ~/ .bashrc` and `echo $COLOR`
+
+### Managing Processes 
+Process is an instance of a running programm. To view all the running instances or programs we can use `ps` command.
+* `sleep 100` this command will make terminal sleep for 100 seconds and see the process using `ps` command
+* to `kill` the process use `kill process_id` command.
+
+### Managing Users
+#### How to create new users and login with that users
+* `useradd` - to add user. To see the option just run the `useradd` or `adduser`(this interactive mode) command. -m or --create-home (creates the user's home directory).
+  * To add user `user add -m user_name` for eg. `user add -m magar`
+  * where the user stored? Well, it will stored in `/etc/passwd` file. So to view the user account use this `cat /etc/passwd` command. It will return like this `magar:x:1000:1000::/home/magar:/bin/sh`
+* `usermod` - to modify user
+  * To change the `/bin/sh` to `/bin/bash` we need to modify the user 
+  * After that it will set to bash to the specific user `magar:x:1000:1000::/home/magar:/bin/bash`
+  * To view stored password for the user in encrypted format. `cat /etc/shadow`
+* `userdel` - to delete user
+  * `userdel user_name`
+
+#### Login with specific user 
+* `docker exec -it -u user_name container_id bash` for example `docker exec -it -u magar 5b4dabe0ee16 bash` it will login with user magar.
+
+#### Managing Groups 
+**a. Why we need groups?**
+We need group because to set the same privileges to the same group users.
+**b. How to see the group info?**
+The user groups information will sotred in `/etc/group`
+**c. How to add the user to the group?**
+There are two options -G --groups or -g --gid. Difference between --gid is for force as a primary group and --groups is as supplementary group. In Linux system for user there is one primary group and zero or more supplementary groups.
+To add the user to the group `usermod -G developers magar`
+**To serach the user `grep magar /etc/passwd` or `cat /etc/passwd | grep magar` ** It returns `magar:x:1000:1000::/home/magar:/bin/bash` **
+
+1. `groupadd`
+2. `groupmod`
+3. `groupdel`
