@@ -1,12 +1,27 @@
 FROM centos:7
 
-MAINTAINER Rudra Magar <rkm.com.np>
+MAINTAINER Rudra Kumar Magar <rkm.com.np>
 LABEL version="1.0" location="Tokyo, Japan" type="centos-ssh"
 
 # Install packages
 RUN yum -y update && \
-    yum -y install sudo passwd initscripts openssh-server openssh-clients service vim openssl && \
+    yum -y install sudo passwd initscripts openssh-server openssh-clients service vim openssl systemd && \
     yum clean all
+
+# Remove some file to enable systemd
+RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
+systemd-tmpfiles-setup.service ] || rm -f $i; done); \
+rm -f /lib/systemd/system/multi-user.target.wants/*;\
+rm -f /etc/systemd/system/*.wants/*;\
+rm -f /lib/systemd/system/local-fs.target.wants/*; \
+rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
+rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
+rm -f /lib/systemd/system/basic.target.wants/*;\
+rm -f /lib/systemd/system/anaconda.target.wants/*;
+
+# Mount two volues
+VOLUME /sys/fs/cgroup /data
+COPY . /data
 
 # Update root password
 RUN echo 'root:root' | chpasswd
@@ -14,9 +29,11 @@ RUN adduser rkm && \
     echo 'rkm:root' | chpasswd && \
     usermod -aG wheel rkm
 
-# Configure SSHD
+# Configure SSHD and generate essential keys
 RUN mkdir -p /var/run/sshd ; chmod -rx /var/run/sshd
-RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
+RUN ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa
+RUN ssh-keygen -f /etc/ssh/ssh_host_ed25519_key -N '' -t ed25519
+RUN ssh-keygen -f /etc/ssh/ssh_host_ecdsa_key -N '' -t ecdsa
 
 # Configure sshd_config
 RUN sed -ri 's/#PermitRootLogin yes/PermitRootLogin yes/g' /etc/ssh/sshd_config
