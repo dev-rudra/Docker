@@ -1,15 +1,59 @@
 version: '3'
 services:
   centos1:
-    image: centos7-rssh
+    image: rudramagar/centos7-rssh:latest
     container_name: node1
     hostname: node1
     ports:
       - "2200:22"
+    networks:
+      - centos_network
+    environment:
+      - KEEPALIVED_CONFIG=vrrp_instance VI_1 {
+          state MASTER
+          interface eth0
+          virtual_router_id 55
+          priority 150
+          advert_int 1
+          authentication {
+            auth_type PASS
+            auth_pass C3PRKM9g
+          }
+
+          virtual_ipaddress {
+            172.20.0.20 dev eth0
+          }
+        }
+    command: >
+      /bin/bash -c "yum install -y keepalived && echo \"$KEEPALIVED_CONFIG\" > /etc/keepalived/keepalived.conf && /usr/sbin/keepalived --dont-fork -d --log-console --log-detail --vrrp"
 
   centos2:
-    image: centos7-rssh
+    image: rudramagar/centos7-rssh:latest
     container_name: node2
     hostname: node2
     ports:
       - "2300:22"
+    networks:
+      - centos_network
+    environment:
+      - KEEPALIVED_CONFIG=vrrp_instance VI_1 {
+          state MASTER
+          interface eth0
+          virtual_router_id 55
+          priority 100
+          advert_int 1
+          authentication {
+            auth_type PASS
+            auth_pass C3PRKM9g
+          }
+
+          virtual_ipaddress {
+            172.20.0.20 dev eth0
+          }
+        }
+    command: >
+      /bin/bash -c "yum install -y keepalived && echo \"$KEEPALIVED_CONFIG\" > /etc/keepalived/keepalived.conf && /usr/sbin/keepalived --dont-fork -d --log-console --log-detail --vrrp"
+
+networks:
+    centos_network:
+      driver: bridge
